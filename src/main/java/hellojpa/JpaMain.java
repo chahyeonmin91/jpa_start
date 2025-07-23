@@ -9,8 +9,30 @@ public class JpaMain {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
         //code
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
 
-        em.close();
+        try {
+//            //비영속
+//            Member member = new Member();
+//            member.setId(1L);
+//            member.setName("HelloA");
+//
+//            //영속
+//            em.persist(member);
+
+            //영속
+            Member member = em.find(Member.class, 150L);
+            member.setName("ZZZZ");
+
+            //em.persist(member);
+
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        }finally {
+            em.close();
+        }
         emf.close();
     }
 }
