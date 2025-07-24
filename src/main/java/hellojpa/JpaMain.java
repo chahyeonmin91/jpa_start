@@ -24,6 +24,10 @@ public class JpaMain {
             //영속
             Member member = em.find(Member.class, 150L);
             member.setName("ZZZZ");
+            if (member.getName().equals("ZZZZ")) {
+                em.persist(member);
+
+            }
 
             //em.persist(member);
 
