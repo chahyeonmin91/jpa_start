@@ -22,15 +22,17 @@ public class JpaMain {
 //            em.persist(member);
 
             //영속
-            Member member = em.find(Member.class, 150L);
-            member.setName("ZZZZ");
-            if (member.getName().equals("ZZZZ")) {
-                em.persist(member);
+            Member member = new Member(200L, "member200");
 
-            }
+//            member.setName("ZZZZ");
+//            if (member.getName().equals("ZZZZ")) {
+//                em.persist(member);
+//
+//            }
 
-            //em.persist(member);
+            em.persist(member);
 
+            em.flush();
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
