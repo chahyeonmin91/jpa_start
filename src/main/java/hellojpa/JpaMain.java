@@ -21,18 +21,20 @@ public class JpaMain {
 //            //영속
 //            em.persist(member);
 
-            //영속
-            Member member = new Member(200L, "member200");
-
 //            member.setName("ZZZZ");
 //            if (member.getName().equals("ZZZZ")) {
 //                em.persist(member);
 //
 //            }
 
-            em.persist(member);
+            Member member = em.find(Member.class, 150L);
+            member.setName("AAAA");
 
-            em.flush();
+            em.clear();
+
+            Member member2 = em.find(Member.class, 150L);
+
+//            em.flush();
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
